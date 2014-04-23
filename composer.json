@@ -1,0 +1,16 @@
+{
+    "name": "fabian/linkedin-nette",
+    "type": "library",
+    "keywords": ["nette", "linkedin", "login", "authorization", "api"],
+    "authors": [{"name": "Lukas Vana", "email": "fabian@fabian.cz", "homepage": "http://home.fabian.cz", "role": "Developer"}],
+    "description" : "LinkedIn authorization for Nette framework",
+    "version": "0.1",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "nette/nette": "2.1.*"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
