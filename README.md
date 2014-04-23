@@ -23,8 +23,8 @@ and extension:
 extensions:
     linkedin: \Fabian\Linkedin\LinkedinExtension
 ```
-- in your BasePresenter injext LinkedIn extension:
-```
+- in your BasePresenter inject LinkedIn extension:
+```php
 /**
  * @var \Fabian\Linkedin\Linkedin
  */
@@ -36,8 +36,8 @@ public function __construct(\Fabian\Linkedin\Linkedin $linkedin)
     $this->linkedin = $linkedin;
 }
 ```
-- and create component handling login operations (f.e. in your BasePresenter, too):
-```
+- and create component handling login operations:
+```php
 protected function createComponentLinkedinLogin()
 {
     $dialog = $this->linkedin->createDialog();
@@ -60,7 +60,7 @@ protected function createComponentLinkedinLogin()
 }
 ```
 - place LinkedIn login in your template:
-```
+```html
 <a n:href="linkedinLogin-open!">Login by LinkedIn</a>
 ```
 
