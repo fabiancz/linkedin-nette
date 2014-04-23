@@ -1,7 +1,11 @@
 Instalation
 ===========
 
-FIXME: composer
+The best way is via [Composer](http://getcomposer.org/):
+
+```
+composer require fabian/linkedin-nette:dev-master
+```
 
 Usage
 =====
