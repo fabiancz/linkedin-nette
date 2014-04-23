@@ -46,6 +46,10 @@ class LoginDialog extends \Nette\Application\UI\PresenterComponent
         if (!isset($params['code'])) {
             throw new Exception('no code!');
         }
+        // check state token for CSRF attack
+        if ($params['state'] != $this->linkedin->getState()) {
+            throw new Exception('CSRF attack!');
+        }
         $accessToken = $this->linkedin->getAccessToken(
             $params['code'], $this->link('//response!')
         );

@@ -29,15 +29,29 @@ class Linkedin extends \Nette\Object
         
         $this->config = $config;
     }
+    
+    /**
+     * Get LinkedIn CSRF token
+     * @return string
+     */
+    public function getState()
+    {
+        if (isset($this->session->csrfToken)) {
+            return $this->session->csrfToken;
+        }
+        return FALSE;
+    }
 
     public function getRedirectUrl($backLink)
     {
+        $this->session->csrfToken = \Nette\Utils\Strings::random();
+        
         return $this->config->url['authorization'].'?'
             .  http_build_query(array(
                 'response_type' => 'code',
                 'client_id' => $this->config->appId,
                 'scope' => join(' ', $this->config->permissions),
-                'state' => 'SDj324r598',
+                'state' => $this->session->csrfToken,
                 'redirect_uri' => $backLink
             ));
     }
