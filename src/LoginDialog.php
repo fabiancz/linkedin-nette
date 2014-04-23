@@ -17,11 +17,9 @@ class LoginDialog extends \Nette\Application\UI\PresenterComponent
     */
     public $onResponse = array();
     
-    public function __construct(\Fabian\Linkedin\Linkedin $linkedin,
-        \Nette\ComponentModel\IContainer $parent = NULL, $name = NULL)
+    public function __construct(\Fabian\Linkedin\Linkedin $linkedin)
     {
-        parent::__construct($parent, $name);
-        
+        parent::__construct();
         $this->linkedin = $linkedin;
     }
 
