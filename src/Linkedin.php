@@ -61,11 +61,11 @@ class Linkedin extends \Nette\Object
         if (isset($this->accessToken)) {
             return $this->accessToken;
         }
-        
+
         $params = array(
             'grant_type' => 'authorization_code',
             'client_id' => $this->config->appId,
-            'client_secret' => $this->config->apiSecret,
+            'client_secret' => $this->config->appSecret,
             'code' => $code,
             'redirect_uri' => $redirectUri,
         );
@@ -83,6 +83,8 @@ class Linkedin extends \Nette\Object
         $token = json_decode($response);
         if (isset($token->error)) {
             throw new Exception($token->error_description);
+        } elseif (!$token) {
+            throw new Exception('token error');
         }
         
         $this->session->access_token = $token->access_token;
@@ -125,6 +127,7 @@ class Linkedin extends \Nette\Object
         $json = json_decode($response);
         
         if (isset($json->errorCode)) {
+            unset($this->session->access_token);
             throw new Exception($json->message, $json->errorCode);
         }
         
