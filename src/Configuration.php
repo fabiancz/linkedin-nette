@@ -24,7 +24,7 @@ class Configuration extends \Nette\Object
      */
     public $url = array(
         'authorization' => 'https://www.linkedin.com/uas/oauth2/authorization',
-        'accessToken' => 'https://www.linkedin.com/uas/oauth2/accessToken/',
+        'accessToken' => 'https://www.linkedin.com/uas/oauth2/accessToken',
         'api' => 'https://api.linkedin.com/v1/'
     );
 
