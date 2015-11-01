@@ -87,7 +87,7 @@ class Linkedin extends \Nette\Object
             throw new Exception('token error');
         }
         
-        $this->session->access_token = $token->access_token;
+        $this->session->access_token = $this->accessToken = $token->access_token;
         
         return $token->access_token;
     }
