@@ -13,7 +13,7 @@ class Linkedin extends \Nette\Object
      * @var \Nette\Http\Session
      */
     private $session;
-    
+
     /**
      * @var \Fabian\Linkedin\Configuration
      */
@@ -132,5 +132,12 @@ class Linkedin extends \Nette\Object
         }
         
         return $json;
+    }
+
+    public function clearSession()
+    {
+        foreach ($this->session as $name => $item) {
+            unset($this->session->$name);
+        }
     }
 }
