@@ -13,7 +13,7 @@ class Linkedin extends \Nette\Object
      * @var \Nette\Http\Session
      */
     private $session;
-    
+
     /**
      * @var \Fabian\Linkedin\Configuration
      */
@@ -44,7 +44,7 @@ class Linkedin extends \Nette\Object
 
     public function getRedirectUrl($backLink)
     {
-        $this->session->csrfToken = \Nette\Utils\Strings::random();
+        $this->session->csrfToken = \Nette\Utils\Random::generate();
         
         return $this->config->url['authorization'].'?'
             .  http_build_query(array(
@@ -87,7 +87,7 @@ class Linkedin extends \Nette\Object
             throw new Exception('token error');
         }
         
-        $this->session->access_token = $token->access_token;
+        $this->session->access_token = $this->accessToken = $token->access_token;
         
         return $token->access_token;
     }
@@ -132,5 +132,12 @@ class Linkedin extends \Nette\Object
         }
         
         return $json;
+    }
+
+    public function clearSession()
+    {
+        foreach ($this->session as $name => $item) {
+            unset($this->session->$name);
+        }
     }
 }
