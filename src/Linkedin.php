@@ -44,7 +44,7 @@ class Linkedin extends \Nette\Object
 
     public function getRedirectUrl($backLink)
     {
-        $this->session->csrfToken = \Nette\Utils\Strings::random();
+        $this->session->csrfToken = \Nette\Utils\Random::generate();
         
         return $this->config->url['authorization'].'?'
             .  http_build_query(array(
